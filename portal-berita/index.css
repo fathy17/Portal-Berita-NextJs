@@ -1,0 +1,289 @@
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5){
+
+  html,
+  body{
+    width:100%;
+    overflow-x:hidden;
+  }
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+  width : 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont,"Montserrat", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+
+/* Navbar */
+
+.containerNav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  background-color: #293462;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+}
+
+.logo {
+  position: absolute;
+  flex-grow: 1;
+  margin-left: 10%;
+}
+
+.logo h2{
+  font-size: 30px;
+  color: white;
+  z-index: 5;
+  margin: 0;
+} 
+
+/* Navigation */
+
+.navigation {
+  margin: 0 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  position: relative;
+  
+}
+
+.navigation form>button {
+  font-size: 17px;
+  background-color: #333333;
+  color: azure;
+  border-color: #333333;
+}
+
+.ham-icon {
+  display: none;
+}
+
+.boxMobile {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.boxMobile img{
+  height: 180px !important;
+  
+}
+
+.gMobile {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+}
+
+.hover:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) !important;
+}
+
+.searchBar {
+  display: none;
+}
+
+.searchBarOn {
+  display: block;
+}
+
+.searchMobile {
+  display: none;
+}
+
+.margin {
+  margin: 0 10%;
+}
+
+/* Media Screen */
+@media only screen and (max-width: 1024px) {
+  .navigation {
+    display: none;
+  }
+
+  .margin-media {
+    margin-top: 10px;
+  }
+
+  .ham-icon {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+
+  .containerNav {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .boxMobile {
+    height:215px !important ;
+  }
+  
+  .boxMobile img {
+    height:215px !important ;
+  }
+
+  .logoMobile img {
+    display: none
+  }
+  
+  .logo-off {
+    display: none;
+  }
+
+  .logoMobile.nav img {
+    display: block;
+    margin-right: 10px !important;
+    height: 30px !important;
+    width: auto !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .terbaruMobile{
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .populerMobile{
+    margin-top: 25px !important;
+    height: auto !important;
+  }
+
+  .titleMobile {
+    font-size: 18px !important;
+    line-height: 22px !important;
+  }
+
+  .logoMobile.nav h2 {
+    font-size: 20px !important;
+  }
+
+  .detailGambar {
+    height: 200px !important;
+  }
+
+  .gridMobile h1 {
+    font-size: 24px !important;
+    line-height: 30px !important;
+  }
+
+  .hover {
+    height: 215px !important;
+  }
+
+  .hover img {
+    height: 215px !important;
+  }
+
+  .margin {
+    margin: 0 25px !important;
+  }
+
+  .gMobile {
+    padding: 12px 12px 0 12px !important;
+  }
+
+  .iframe {
+    text-align: center !important;
+  }
+
+  .terbaru-detail {
+    margin-top: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .searchMobile {
+    display: block;
+    margin-right: 25px;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .margin-media {
+    margin-top: 10px;
+  }
+
+  .ham-icon {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 30px;
+    margin-right: 60px;
+    cursor: pointer;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .gridMobile {
+    padding-right: 0 !important;
+  }
+
+  .boxMobile {
+    height:215px !important ;
+  }
+  
+  .boxMobile img {
+    height:215px !important ;
+  }
+
+  .logoMobile img {
+    display: none
+  }
+
+  
+  .logo-off {
+    display: none;
+  }
+
+  .logoMobile.nav img {
+    display: block;
+    margin-right: 13px !important;
+    height: 30px !important;
+    width: auto !important;
+  }
+}
+
