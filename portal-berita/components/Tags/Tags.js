@@ -3,11 +3,11 @@ import Moment from 'react-moment'
 import { Grid, Box, CircularProgress } from '@material-ui/core';
 import Link from 'next/link'
 import { TagsContext } from '../Store/TagsContext';
-import '../../index.css'
+import '../../static/index.css'
 
-const Tags = () => {
+const Tags = ({tags}) => {
     const { berita } = useContext(TagsContext)
-    const tag = "Daerah"
+    const tag = tags
     let data = berita.filter(item => item.acf.tag[0] === tag || item.acf.tag[1] === tag
          || item.acf.tag[2] === tag || item.acf.tag[3] === tag || item.acf.tag[4] === tag
          || item.acf.tag[5] === tag || item.acf.tag[6] === tag || item.acf.tag[7] === tag

@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import Navbar from '../components/Home/Navbar'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import '../index.css'
+import '../static/index.css'
 
 
 const Home = () => {

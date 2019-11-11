@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import Search from './Search';
 import { MdSearch } from 'react-icons/md'
 import Logo from '../../static/es-logo-web.png'
+import '../../static/index.css'
 
 function HideOnScroll(props) {
     const { children } = props;
@@ -104,7 +105,7 @@ const Navbar = (props) => {
                         <div className="searchMobile"><MdSearch style={{ color: 'white', cursor: 'pointer', fontSize: '20px' }} onClick={toogleOpen} /></div>
                         <Navigation />
                     </div>
-            </HideOnScroll>                                                                                                                                <po0bv>YTGG FHTXY6DV</po0bv>
+            </HideOnScroll>
         </Fragment>
     );
 }
