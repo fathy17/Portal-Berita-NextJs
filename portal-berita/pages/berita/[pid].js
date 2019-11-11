@@ -10,6 +10,7 @@ import Navbar from '../../components/Home/Navbar'
 import fetch from 'isomorphic-unfetch'
 import Layout from '../../components/Layout';
 import '../../static/index.css'
+import Meta from '../../components/SEO';
 
 
 const NewsDetail = (props) => {
@@ -37,6 +38,14 @@ const NewsDetail = (props) => {
             <Layout>
                 {props.berita.length ? (
                     <Fragment>
+                        <Meta 
+                            desc = {props.berita[0].content.rendered.substr(0, 1000)}
+                            title = {`Ekspose Sulsel - ${props.berita[0].title.rendered} `}
+                            canonical = {`https://eksposesulsel.com/berita/${props.berita[0].slug}`}
+                            image = {props.berita[0].acf.gambar}
+                            css = "/static/index.css"
+                            js = ""
+                        />
                         <div style={{ marginTop: '80px' }} >
                             <Grid container >
                                 <Grid item xs={12} sm={12} md={8} style={{ paddingRight: '100px' }} className="gridMobile">

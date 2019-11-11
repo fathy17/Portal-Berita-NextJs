@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext, Fragment} from 'react';
+import React, { useEffect, useState, createContext, Fragment } from 'react';
 import Axios from 'axios'
 import News from '../components/Home/News'
 import Terbaru from '../components/Home/Terbaru'
@@ -9,6 +9,8 @@ import Navbar from '../components/Home/Navbar'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../static/index.css'
+import Head from 'next/head';
+import Layout from '../components/Layout';
 
 
 const Home = () => {
@@ -16,36 +18,34 @@ const Home = () => {
 
     useEffect(() => {
         Axios.get('https://admin.eksposesulsel.com/wp-json/wp/v2/berita')
-        .then(res => setBerita(res.data))
-        .catch(err => console.log(err))
-    },[])
+            .then(res => setBerita(res.data))
+            .catch(err => console.log(err))
+    }, [])
     useEffect(() => {
         window.scrollTo(0, 0)
     });
 
     return (
-            <BeritaContextProvider>
-                <Helmet>
-                    <title>Ekspose Sulsel</title>
-                    <link rel="canonical" href="https://eksposesulsel.com/" />
-                    <meta name="description" content="Portal Berita Sulawesi Selatan" />
-                    <meta name="keywords" content="Portal Berita Sulawesi Selatan" />
-                </Helmet>
-                <Navbar />
-                <div className="margin">
-                    {berita.length ? (
-                        <Fragment>
-                            <News />
-                            {/* <Populer /> */}
-                            <Terbaru />
-                        </Fragment>
-                    ) : (
-                            <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: '1000000' }}>
-                                <CircularProgress />
-                            </div>
-                        )}
-                </div>
-            </BeritaContextProvider>
+        <BeritaContextProvider>
+            <Head>
+                <title>Ekspose Sulsel</title>
+                <meta name="description" content="Portal Berita Sulawesi Selatan Terpercaya dan Menarik" />
+                <link rel="canonical" href="https://eksposesulsel.com" />
+            </Head>
+            <Layout>
+                {berita.length ? (
+                    <Fragment>
+                        <News />
+                        {/* <Populer /> */}
+                        <Terbaru />
+                    </Fragment>
+                ) : (
+                        <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: '1000000' }}>
+                            <CircularProgress />
+                        </div>
+                    )}
+            </Layout>
+        </BeritaContextProvider>
     );
 }
 
