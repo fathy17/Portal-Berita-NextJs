@@ -7,6 +7,7 @@ import Search from './Search';
 import { MdSearch } from 'react-icons/md'
 import Logo from '../../static/es-logo-web.png'
 import '../../static/index.css'
+import { Router } from 'next/router';
 
 function HideOnScroll(props) {
     const { children } = props;
@@ -70,15 +71,15 @@ const Navbar = (props) => {
                 </div>
             </Dialog>
             <SwipeableDrawer style={{ width: '100%' }} anchor="left" open={open} classes={{ paper: styles.paper }} onClose={onClose} onOpen={toogleDrawer}>
-                <div style={{ width: '100%', height: '100%', margin: '20px 0 0 20px', zIndex: '11' }}>
-                    <div className="logo nav">
-                        <Link href='/' >
+                <div style={{ width: '100%', height: '100%', margin: '20px 0 0 20px' }}>
+                    <Link href='/' >
+                        <div className="logo nav">
                             <div onClick={onClose} className="logoMobile nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <img src={Logo} alt="Logo" style={{ height: '40px', width: '37px', marginRight: '15px' }} />
                                 <h2 style={{ fontSize: '24px', lineHeight: '17px' }}>EKSPOSE SULSEL</h2>
                             </div>
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
                     <div style={{ marginTop: '45px', width: '100%' }}>
                         <hr style={{ marginRight: '40px' }} />
                         {tags.map(tag => {
@@ -90,21 +91,21 @@ const Navbar = (props) => {
                 </div>
             </SwipeableDrawer>
             <HideOnScroll {...props}>
-                    <div className="containerNav">
-                        <div className='ham-icon' onClick={toogleDrawer}>
-                            <FaBars style={{ color: 'white' }} />
-                        </div>
-                        <div className={logo}>
-                            <Link href='/' >
-                                <div onClick={() => setOpen(false)} className="logoMobile" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <img src={Logo} alt="Logo" style={{ height: '40px', width: '37px', marginRight: '15px' }} />
-                                    <h2 style={{ fontSize: '24px', lineHeight: '17px' }}>EKSPOSE SULSEL</h2>
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="searchMobile"><MdSearch style={{ color: 'white', cursor: 'pointer', fontSize: '20px' }} onClick={toogleOpen} /></div>
-                        <Navigation />
+                <div className="containerNav">
+                    <div className='ham-icon' onClick={toogleDrawer}>
+                        <FaBars style={{ color: 'white' }} />
                     </div>
+                    <Link href='/' >
+                        <div className={logo}>
+                            <div onClick={() => setOpen(false)} className="logoMobile" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+                                <img src={Logo} alt="Logo" style={{ height: '40px', width: '37px', marginRight: '15px' }} />
+                                <h2 style={{ fontSize: '24px', lineHeight: '17px' }}>EKSPOSE SULSEL</h2>
+                            </div>
+                        </div>
+                    </Link>
+                    <div className="searchMobile"><MdSearch style={{ color: 'white', cursor: 'pointer', fontSize: '20px' }} onClick={toogleOpen} /></div>
+                    <Navigation />
+                </div>
             </HideOnScroll>
         </Fragment>
     );

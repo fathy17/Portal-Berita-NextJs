@@ -32,14 +32,14 @@ const Terbaru = () => {
                                             <Fragment key={data.id}>
                                                 <Grid item xs={12} sm={12} md={5} lg={5} xl={5} className="gMobile">
                                                     <Link href={`/berita/${data.slug}`} >
-                                                        <Box className="boxMobile" style={{ backgroundColor: 'grey', height: '145px', width: '100%', borderRadius: '6px' }}>
+                                                        <Box className="boxMobile" style={{ backgroundColor: 'grey', height: '145px', width: '100%', borderRadius: '6px', cursor: 'pointer' }}>
                                                             <img src={data.acf.gambar} alt={data.title.rendered} style={{ objectFit: 'cover', backgroundColor: 'grey', height: '145px', width: '100%', borderRadius: '6px' }} />
                                                         </Box>
                                                     </Link>
                                                 </Grid>
                                                 <Grid item xs={12} sm={12} md={7} lg={7} xl={7} style={{padding: '12px', textAlign: 'start'}}>
                                                     <Link href={`/berita/${data.slug}`} >
-                                                        <h2 style={{ marginTop: '0px', marginBottom: '0px', fontWeight: '600', fontSize: '18px', fontStyle: 'normal', color: '#293462' }}>{data.title.rendered}</h2>
+                                                        <h2 style={{ cursor: 'pointer', marginTop: '0px', marginBottom: '0px', fontWeight: '600', fontSize: '18px', fontStyle: 'normal', color: '#293462' }}>{data.title.rendered}</h2>
                                                     </Link>
                                                     <h2 style={{ fontWeight: '500', fontSize: '12px', color: '#808080', textTransform: 'uppercase' }}>{data.acf.penulis} - <Moment locale="id" format="Do MMMM YYYY">{data.date}</Moment></h2>
                                                     <div>

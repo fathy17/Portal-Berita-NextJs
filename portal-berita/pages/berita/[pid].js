@@ -1,12 +1,8 @@
-import React, { Fragment, useEffect, useState, useContext } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Grid, Box, CircularProgress } from '@material-ui/core';
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, FacebookIcon, TwitterIcon, WhatsappIcon } from 'react-share'
 import Link from 'next/link'
-import Axios from 'axios'
-import { BeritaContext } from '../../components/Store/BeritaContext';
 import Moment from 'react-moment'
-import { Helmet } from "react-helmet";
-import Navbar from '../../components/Home/Navbar'
 import fetch from 'isomorphic-unfetch'
 import Layout from '../../components/Layout';
 import '../../static/index.css'
@@ -14,37 +10,24 @@ import Meta from '../../components/SEO';
 
 
 const NewsDetail = (props) => {
-    // const { berita } = useContext(BeritaContext)
-
-    // const [detail, setDetail] = useState([])
-    // useEffect(() => {
-    //     Axios.get(`https://admin.eksposesulsel.com/wp-json/wp/v2/berita?slug=${props.match.params.id}`)
-    //         .then(res => setDetail(res.data))
-    //         .catch(err => console.log(err))
-    //     window.scrollTo(0, 0)
-    // }, [props.match.params.id])
-    const [terbaru, setTerbaru] = useState([])
 
     useEffect(() => {
-        Axios.get('https://admin.eksposesulsel.com/wp-json/wp/v2/berita')
-            .then(res => setTerbaru(res.data))
-            .catch(err => console.log(err))
         window.scrollTo(0, 0)
     }, [])
 
-    console.log(props, terbaru)
+    const { terbaru } = props
     return (
         <Fragment>
             <Layout>
                 {props.berita.length ? (
                     <Fragment>
-                        <Meta 
-                            desc = {props.berita[0].content.rendered.substr(0, 1000)}
-                            title = {`Ekspose Sulsel - ${props.berita[0].title.rendered} `}
-                            canonical = {`https://eksposesulsel.com/berita/${props.berita[0].slug}`}
-                            image = {props.berita[0].acf.gambar}
-                            css = "/static/index.css"
-                            js = ""
+                        <Meta
+                            desc={props.berita[0].content.rendered.substr(0, 1000)}
+                            title={`Ekspose Sulsel - ${props.berita[0].title.rendered} `}
+                            canonical={`https://portal-berita.fathyfahrezy17.now.sh${props.url.asPath}`}
+                            image={props.berita[0].acf.gambar}
+                            css="/static/index.css"
+                            js=""
                         />
                         <div style={{ marginTop: '80px' }} >
                             <Grid container >
@@ -70,13 +53,13 @@ const NewsDetail = (props) => {
                                     <hr style={{ height: '1px', width: '100%', border: 'none', backgroundColor: '#C4C4C4' }} />
                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '170px' }}>
                                         <h3 style={{ fontSize: '14px', fontWeight: '600', color: '#293462' }}>BAGIKAN</h3>
-                                        <FacebookShareButton style={{ pointer: 'cursor' }} url={`https://eksposesulsel.com${props.url.asPath}`}>
+                                        <FacebookShareButton style={{ pointer: 'cursor' }} url={`https://portal-berita.fathyfahrezy17.now.sh${props.url.asPath}`}>
                                             <FacebookIcon size={28} />
                                         </FacebookShareButton>
-                                        <TwitterShareButton style={{ pointer: 'cursor' }} url={`https://eksposesulsel.com${props.url.asPath}`}>
+                                        <TwitterShareButton style={{ pointer: 'cursor' }} url={`https://portal-berita.fathyfahrezy17.now.sh${props.url.asPath}`}>
                                             <TwitterIcon size={28} />
                                         </TwitterShareButton>
-                                        <WhatsappShareButton style={{ pointer: 'cursor' }} url={`https://eksposesulsel.com${props.url.asPath}`}>
+                                        <WhatsappShareButton style={{ pointer: 'cursor' }} url={`https://portal-berita.fathyfahrezy17.now.sh${props.url.asPath}`}>
                                             <WhatsappIcon size={28} />
                                         </WhatsappShareButton>
                                     </div>
@@ -85,20 +68,22 @@ const NewsDetail = (props) => {
                                     <div className="terbaru-detail" style={{ borderRadius: '6px', height: '35px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', backgroundColor: '#293462' }}>
                                         <h2 style={{ fontWeight: 'bold', fontSize: '24px', letterSpacing: '0.1em', margin: 'auto', color: '#FFF' }}>TERBARU</h2>
                                     </div>
-                                    {terbaru.slice(0, 5).map(data => {
-                                        return (
-                                            <div key={data.id} style={{ paddingBottom: '10px' }}>
-                                                <Link href={`/berita/${data.slug}`}>
-                                                    <div>
-                                                        <Box style={{ backgroundColor: 'grey', height: '240px', borderRadius: '6px' }}>
-                                                            <img src={data.acf.gambar} alt={data.title.rendered} style={{ height: '240px', width: '100%', borderRadius: '6px', objectFit: 'cover' }} />
-                                                        </Box>
-                                                        <h3 style={{ fontWeight: '600', fontSize: '18px', lineHeight: '20px', color: '#293462' }}>{data.title.rendered}</h3>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )
-                                    })}
+                                    <div>
+                                        {terbaru.slice(0, 5).map(data => {
+                                            return (
+                                                <div key={data.id} style={{ paddingBottom: '10px' }}>
+                                                    <Link href={`/berita/${data.slug}`}>
+                                                        <div>
+                                                            <div style={{ backgroundColor: 'grey', height: '240px', borderRadius: '6px', cursor:'pointer' }}>
+                                                                <img src={data.acf.gambar} alt={data.title.rendered} style={{ height: '240px', width: '100%', borderRadius: '6px', objectFit: 'cover' }} />
+                                                            </div>
+                                                            <h3 style={{ fontWeight: '600', fontSize: '18px', lineHeight: '20px', color: '#293462', cursor:'pointer' }}>{data.title.rendered}</h3>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
                                 </Grid>
                             </Grid>
                         </div>
@@ -119,8 +104,12 @@ NewsDetail.getInitialProps = async function (context) {
     const res = await fetch(`https://admin.eksposesulsel.com/wp-json/wp/v2/berita?slug=${context.query.pid}`);
     const data = await res.json();
 
+    const res1 = await fetch(`https://admin.eksposesulsel.com/wp-json/wp/v2/berita`)
+    const data1 = await res1.json()
+
     return {
-        berita: data
+        berita: data,
+        terbaru: data1
     };
 };
 

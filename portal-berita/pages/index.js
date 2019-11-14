@@ -4,23 +4,16 @@ import News from '../components/Home/News'
 import Terbaru from '../components/Home/Terbaru'
 import BeritaContextProvider, { BeritaContext } from '../components/Store/BeritaContext';
 import { CircularProgress } from '@material-ui/core';
-import { Helmet } from "react-helmet";
-import Navbar from '../components/Home/Navbar'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../static/index.css'
 import Head from 'next/head';
 import Layout from '../components/Layout';
+import fetch from 'isomorphic-unfetch'
 
 
-const Home = () => {
-    const [berita, setBerita] = useState([])
+const Home = (props) => {
 
-    useEffect(() => {
-        Axios.get('https://admin.eksposesulsel.com/wp-json/wp/v2/berita')
-            .then(res => setBerita(res.data))
-            .catch(err => console.log(err))
-    }, [])
     useEffect(() => {
         window.scrollTo(0, 0)
     });
@@ -33,20 +26,20 @@ const Home = () => {
                 <link rel="canonical" href="https://eksposesulsel.com" />
             </Head>
             <Layout>
-                {berita.length ? (
-                    <Fragment>
-                        <News />
-                        {/* <Populer /> */}
-                        <Terbaru />
-                    </Fragment>
-                ) : (
-                        <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: '1000000' }}>
-                            <CircularProgress />
-                        </div>
-                    )}
+                <News berita={props.berita} />
+                <Terbaru />
             </Layout>
         </BeritaContextProvider>
     );
 }
+
+Home.getInitialProps = async function () {
+    const res = await fetch(`https://admin.eksposesulsel.com/wp-json/wp/v2/berita`);
+    const data = await res.json();
+
+    return {
+        berita: data
+    };
+};
 
 export default Home;

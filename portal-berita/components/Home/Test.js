@@ -14,6 +14,7 @@ const Test = ({ data }) => {
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
+                    cursor: 'pointer'
                     
                 }}>
                     <img src={data.acf.gambar} alt={data.title.rendered} style={{

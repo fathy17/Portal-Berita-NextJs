@@ -1,9 +1,10 @@
 import React, { Fragment, Component } from 'react';
+import Router from 'next/router';
 // import { withRouter } from "react-router";
 
 class Search extends Component {
     state = {
-        query: '',
+        query: "",
     };
 
     handleInputChange = e => {
@@ -16,8 +17,12 @@ class Search extends Component {
     };
 
     handleSubmit = e => {
-        const { history } = this.props;
-        history.push(`/search/${this.state.query}`)
+        Router.push(`/search/${this.state.query}`)
+        this.setState(
+            {
+                query: ""
+            }
+        )
     }
 
     render() {

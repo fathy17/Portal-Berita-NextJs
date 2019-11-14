@@ -1,18 +1,16 @@
 import React, { Fragment } from 'react';
 import { Grid, Box } from '@material-ui/core';
-import TagsContextProvider from '../../components/Store/TagsContext'
 import Tags from '../../components/Tags/Tags';
 import Layout from '../../components/Layout';
 import Head from 'next/head';
+import fetch from 'isomorphic-unfetch'
 
 const Daerah = (props) => {
-    console.log(props)
     return (
         <Fragment>
             <Head>
                 <title>{`Ekspose Sulsel - ${props.url.query.tags}`}</title>
             </Head>
-            <TagsContextProvider>
                 <Layout>
                     <div style={{ marginTop: '80px' }}>
                         <Grid container spacing={3}>
@@ -22,7 +20,7 @@ const Daerah = (props) => {
                                     <div style={{ width: '100%', height: '3px', backgroundColor: '#293462' }}></div>
                                 </div>
                                 <Grid container spacing={3}>
-                                    <Tags tags={props.url.query.tags} />
+                                    <Tags tags={props.url.query.tags} berita={props.berita} />
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
@@ -35,9 +33,17 @@ const Daerah = (props) => {
                         <br />
                     </div>
                 </Layout>
-            </TagsContextProvider>
         </Fragment>
     );
 }
+
+Daerah.getInitialProps = async function () {
+    const res = await fetch(`https://admin.eksposesulsel.com/wp-json/wp/v2/berita`);
+    const data = await res.json();
+
+    return {
+        berita: data
+    };
+};
 
 export default Daerah

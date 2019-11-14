@@ -8,9 +8,9 @@ import Moment from 'react-moment'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const News = () => {
+const News = (props) => {
 
-    const { berita } = useContext(BeritaContext)
+    const { berita } = props
     var settings = {
         dots: true,
         autoplay: true,
@@ -51,7 +51,8 @@ const News = () => {
                                 backgroundPosition: 'center',
                                 backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat',
-                                marginBottom:'8px'
+                                marginBottom:'8px',
+                                cursor: 'pointer'
                             }}>
                                 <img src={berita.acf.gambar} alt={berita.title.rendered} style={{
                                     position: 'relative',
